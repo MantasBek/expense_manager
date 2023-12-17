@@ -6,14 +6,15 @@
       padding-right: 10px;
     }
   </style>
-  <div class="container mt-4">
-    <h1>Login</h1>
-
     {% if form.errors %}
       <div class="alert alert-danger" role="alert">
           Unable to login, please try again
       </div>
     {% endif %}
+  <div class="container mt-4">
+    <h1>Login</h1>
+
+
 
     <form method="post" action="{% url 'login' %}">
       {% csrf_token %}
