@@ -17,11 +17,11 @@
  6 Enter your local host at:
     http://localhost:8000/
 
-##Features:
+## Features:
 
  1. Listing expenses and income
  2. Keeping track of your monitary use
 
-###Contact:
+### Contact:
 
 If you have any feedback, please contact me at: **mantasbek123@gmail.com**
