@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+
+        <h2 class="my-4">Welcome to Your Personal Expense Tracker</h2>
+
+        <h4 class="my-4">Current Month's Summary</h4>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="mb-0">Total Income</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Amount: {{ total_income|default:0|floatformat:2 }} €</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="mb-0">Total Expense</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Amount: {{ total_expense|default:0|floatformat:2 }} €</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <a href="{% url 'transaction_list' %}" class="btn btn-primary">View Transactions</a>
+            <a href="{% url 'add_transaction' %}" class="btn btn-success">Add Transaction</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class="mb-4">Income Summary</h2>
+
+    <h6>Showing income from {{ start_date }} to {{ end_date }}</h6>
+
+    <form class="form-inline mb-3" method="post" action="{% url 'income_summary' %}">
+        {% csrf_token %}
+        <div class="form-group mr-2">
+            <label for="start_date" class="mr-2">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" class="form-control" required>
+        </div>
+
+        <div class="form-group mr-2">
+            <label for="end_date" class="mr-2">End Date:</label>
+            <input type="date" id="end_date" name="end_date" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+
+    {% if income %}
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for income in income %}
+                    <tr>
+                        <td>{{ income.category.get_category_name_display }}</td>
+                        <td>{{ income.amount|floatformat:2 }} €</td>
+                        <td>{{ income.description }}</td>
+                        <td>{{ income.date | date:"Y-m-d" }}</td>
+                        <td>
+                            <a href="{% url 'edit_transaction' income.id %}" class="btn btn-primary btn-sm">Edit Transaction</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Total Income: {{ total_income|floatformat:2 }} €</h3>
+    {% else %}
+        <p>No income available.</p>
+    {% endif %}
+    <div>
+    {% if income.has_other_pages %}
+        <ul class="pagination pagination-sm justify-content-end">
+            {% for i in income.paginator.page_range %}
+                {% if income.number == i %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ i }}</span>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock %}
