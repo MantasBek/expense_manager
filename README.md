@@ -19,8 +19,10 @@
 
 ## Features:
 
- 1. Listing expenses and income
- 2. Keeping track of your monitary use
+ 1. Creating and having your own personal account
+ 2. Built to hold multiple accounts
+ 3. Listing expenses and income
+ 4. Keeping track of your monitary use
 
 ### Contact:
 
