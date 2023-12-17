@@ -4,13 +4,15 @@
  2. Install required packages
      ``` python
     pip install -r requirements.txt.
-     '''
- 4. Run migrations:
+ 3. Run migrations:
+     ``` python
     python manage.py makemigrations
     python manage.py migrate
- 5. Create superuser:
+ 4. Create superuser:
+     ``` python
     python manage.py createsuperuser
- 6. Start server:
+ 5. Start server:
+     ``` python
     python manage.py runserver
  6 Enter your local host at:
     http://localhost:8000/
@@ -19,4 +21,7 @@
 
  1. Listing expenses and income
  2. Keeping track of your monitary use
- 3. 
+
+###Contact:
+
+If you have any feedback, please contact me at: **mantasbek123@gmail.com**
