@@ -3,7 +3,7 @@
  1. For installing the Django application clone the repository
  2. Install required packages
      ``` python
-    pip install -r requirements.txt.
+    pip install -r requirements.txt
  3. Run migrations:
      ``` python
     python manage.py makemigrations
