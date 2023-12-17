@@ -20,7 +20,7 @@
 ## Features:
 
  1. Creating and having your own personal account
- 2. Built to hold multiple accounts
+ 2. Built to be used by multiple accounts seperately
  3. Listing expenses and income
  4. Keeping track of your monitary use
 
