@@ -14,7 +14,7 @@
  5. Start server:
      ``` python
     python manage.py runserver
- 6 Enter your local host at:
+ 6. Enter your local host at:
     http://localhost:8000/
 
 ## Features:
