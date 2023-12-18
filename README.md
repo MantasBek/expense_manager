@@ -3,7 +3,7 @@
  1. For installing the Django application clone the repository
  2. Install required packages
      ``` python
-    pip install -r requirements.txt.
+    pip install -r requirements.txt
  3. Run migrations:
      ``` python
     python manage.py makemigrations
@@ -19,8 +19,10 @@
 
 ## Features:
 
- 1. Listing expenses and income
- 2. Keeping track of your monitary use
+ 1. Creating and having your own personal account
+ 2. Built to be used by multiple accounts seperately
+ 3. Listing expenses and income
+ 4. Keeping track of your monitary use
 
 ### Contact:
 
