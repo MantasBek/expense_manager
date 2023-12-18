@@ -6,3 +6,75 @@
 .nav-link {
   color: #fff;
 }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container-fluid {
+            height: 100vh;
+            padding: 0;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        .sidebar-nav li {
+            padding: 8px;
+        }
+
+        .sidebar-nav a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .sidebar-nav a:hover {
+            color: #007bff;
+        }
+
+        .navbar-brand p {
+            margin: 0;
+            padding: 10px;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .custom-alert-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 10px;
+        }
+
+        .col-sm-2 {
+          background-color: #343a40;
+          color: #fff;
+          padding: 15px;
+          min-height: 100%;
+          box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-alert {
+            margin-bottom: 10px;
+        }
+
+        .col-sm-10 {
+            padding: 20px;
+        }
+
+        .form-group label[for=id_new_password2] {
+            padding-right: 47px;
+        }
+
+        .form-group label[for=id_username]{
+            padding-right: 10px;
+        }
+
+        .form-group label[for=id_password]{
+            padding-right: 14px;
+        }

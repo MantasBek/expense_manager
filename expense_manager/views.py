@@ -1,6 +1,6 @@
 from datetime import date
 
-from django.db.models import Q, Sum
+from django.db.models import Q, Sum, F
 from django.contrib.auth.forms import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -19,7 +19,6 @@ def index(request):
         current_month = date.today().month
         current_year = date.today().year
 
-        # Fetch total income and total expense
         total_income = Transaction.objects.filter(
             user=request.user,
             transaction_type='income',
@@ -34,7 +33,6 @@ def index(request):
             date__year=current_year
         ).aggregate(Sum('amount'))['amount__sum']
 
-        # Fetch expenses and incomes grouped by category
         expenses_by_category = Transaction.objects.filter(
             user=request.user,
             transaction_type='expense',
@@ -62,7 +60,7 @@ def index(request):
 
 @login_required
 def transaction_list(request):
-    transactions = Transaction.objects.filter(user=request.user)
+    transactions = Transaction.objects.filter(user=request.user).order_by('-date', '-id')
     query = request.GET.get('q')
     if query:
         transactions = transactions.filter(
@@ -95,10 +93,12 @@ def add_transaction(request):
         form = TransactionForm(user=request.user)
     return render(request, 'add_transaction.html', {'form': form})
 
+
 @login_required
 def transaction_detail(request, transaction_id):
     transaction = get_object_or_404(Transaction, pk=transaction_id)
     return render(request, 'transaction_detail.html', {'transaction': transaction})
+
 
 @login_required
 def edit_transaction(request, transaction_id):
@@ -112,12 +112,14 @@ def edit_transaction(request, transaction_id):
         form = TransactionEditForm(instance=transaction)
     return render(request, 'transaction_edit.html', {'form': form, 'transaction': transaction})
 
+
 @login_required
 def delete_transaction(request, transaction_id):
     transaction = get_object_or_404(Transaction, pk=transaction_id)
     if transaction.user == request.user:
         transaction.delete()
     return redirect('transaction_list')
+
 
 @login_required
 def expense_summary(request):
@@ -131,9 +133,9 @@ def expense_summary(request):
         user=request.user,
         transaction_type='expense',
         date__range=[start_date, end_date]
-    )
+    ).order_by('-date', '-id')
     total_expenses = expenses.aggregate(Sum('amount'))['amount__sum']
-    paginator = Paginator(expenses, 2)
+    paginator = Paginator(expenses, 10)
     page_number = request.GET.get('page')
     expenses = paginator.get_page(page_number)
     context = {
@@ -143,6 +145,7 @@ def expense_summary(request):
         'end_date': end_date,
     }
     return render(request, 'expense_summary.html', context)
+
 
 @login_required
 def income_summary(request):
@@ -156,9 +159,9 @@ def income_summary(request):
         user=request.user,
         transaction_type='income',
         date__range=[start_date, end_date]
-    )
+    ).order_by('-date', '-id')
     total_income = income.aggregate(Sum('amount'))['amount__sum']
-    paginator = Paginator(income, 3)
+    paginator = Paginator(income, 10)
     page_number = request.GET.get('page')
     income = paginator.get_page(page_number)
     context = {
@@ -168,6 +171,7 @@ def income_summary(request):
         'end_date': end_date,
     }
     return render(request, 'income_summary.html', context)
+
 
 @csrf_protect
 def register(request):

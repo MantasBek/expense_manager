@@ -1,11 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <style>
-    .form-group label[for=id_username] {
-      padding-right: 10px;
-    }
-  </style>
     {% if form.errors %}
       <div class="alert alert-danger" role="alert">
           Unable to login, please try again
