@@ -1,6 +1,6 @@
 from datetime import date
 
-from django.db.models import Q, Sum, F
+from django.db.models import Q, Sum
 from django.contrib.auth.forms import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
